@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Person;
 
 class PersonController extends Controller
 {
     public function index()
     {
-        //
+        $people = Person::all();
+
+        return view('person.index')->with('people', $people);
     }
 
     /**
@@ -18,7 +21,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('person.create');
     }
 
     /**
@@ -26,9 +29,20 @@ class PersonController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'town_id' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        Person::create($input);
+
+        return redirect('person');
     }
 
     /**
@@ -39,7 +53,9 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        //
+        $person = Person::findOrFail($id);
+
+        return view('person.show')->with('person',$person);
     }
 
     /**
