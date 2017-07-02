@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Town;
 
 class TownController extends Controller
 {
     public function index()
     {
-        //
+        $towns = Town::all();
+
+        return view('town.index')->with('towns', $towns);
     }
 
     /**
@@ -18,7 +21,7 @@ class TownController extends Controller
      */
     public function create()
     {
-        //
+        return view('town.create');
     }
 
     /**
@@ -26,9 +29,19 @@ class TownController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'cityname' => 'required',
+            'postal' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        Town::create($input);
+
+        return redirect('town');
     }
 
     /**
@@ -39,7 +52,9 @@ class TownController extends Controller
      */
     public function show($id)
     {
-        //
+        $town = Town::findOrFail($id);
+
+        return view('town.show')->with('town',$town);
     }
 
     /**
@@ -50,7 +65,9 @@ class TownController extends Controller
      */
     public function edit($id)
     {
-        //
+        $town = Town::findOrFail($id);
+
+        return view('town.edit')->with('town',$town);
     }
 
     /**
@@ -59,9 +76,20 @@ class TownController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
-        //
+        $town = Town::findOrFail($id);
+
+        $this->validate($request, [
+            'cityname' => 'required',
+            'postal' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $town->fill($input)->save();
+
+        return redirect('town');
     }
 
     /**
@@ -72,6 +100,10 @@ class TownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $town = Town::findOrFail($id);
+
+        $town->delete();
+
+        return redirect('town');
     }
 }
