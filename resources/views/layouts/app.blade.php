@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <style>
+    </style>
 
 </head>
 <body>
@@ -27,7 +29,6 @@
                 <span class="sr-only">Przełącz menu</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Kacper Orzechowski: <small>CRUD Laravel</small></a>
         </div>
@@ -35,10 +36,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                <li><a href="{{ route('person.index') }}">Osoby</a></li>
+                <li><a href="{{ route('town.index') }}">Miasta</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

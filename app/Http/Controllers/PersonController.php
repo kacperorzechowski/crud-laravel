@@ -66,7 +66,9 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $person = Person::findOrFail($id);
+
+        return view('person.edit')->with('person',$person);
     }
 
     /**
@@ -75,9 +77,21 @@ class PersonController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, Request $request)
     {
-        //
+        $person = Person::findOrFail($id);
+
+        $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'town_id' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $person->fill($input)->save();
+
+        return redirect('person');
     }
 
     /**
@@ -88,6 +102,10 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $person = Person::findOrFail($id);
+
+        $person->delete();
+
+        return redirect('person');
     }
 }

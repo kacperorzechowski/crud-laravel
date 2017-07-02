@@ -2,7 +2,9 @@
 
 @section('content')
 
-    <form class="form-horizontal">
+    <h3>Zobacz: {{$person->name}} {{$person->surname}}</h3>
+
+
         <div class="form-group">
             <label class="col-sm-2 control-label">Imię</label>
             <div class="col-sm-10">
@@ -19,8 +21,25 @@
         </div>
 
 
-        <a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary">Zmień</a>
-        <a href="{{ route('person.destroy', $person->id) }}" class="btn btn-danger">Usuń</a>
-    </form>
+
+
+
+    <div class="row">
+        <div class="col-md-1"><a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary">Zmień</a></div>
+        <div class="col-md-1">
+            {!! Form::open([
+                            'method' => 'DELETE',
+                            'route' => ['person.destroy', $person->id],
+                            'onsubmit' => 'return confirm("Jesteś pewien?")'
+            ]) !!}
+            {!! Form::submit('Usuń', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+        </div>
+        <div class="col-md-1">
+            <div class="pull-right"><a href="{{ route('person.index') }}" class="btn btn-success">Wróć</a></div>
+        </div>
+    </div>
+
+
 
 @endsection
