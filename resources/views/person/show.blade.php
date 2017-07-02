@@ -16,7 +16,7 @@
             </div>
             <label class="col-sm-2 control-label">Miasto</label>
             <div class="col-sm-10">
-                <p class="form-control-static">{{ $person->town_id }}</p>
+                <p class="form-control-static">{{ DB::table('towns')->where('id', $person->town_id)->value('cityname')}}</p>
             </div>
         </div>
 

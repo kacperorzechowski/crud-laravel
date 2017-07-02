@@ -17,9 +17,19 @@
         {!! Form::label('postal', 'Kod pocztowy', ['class' => 'control-label']) !!}
         {!! Form::text('postal', null, ['class' => 'form-control']) !!}
     </div>
+    <div class="row">
+        <div class="col-md-1">
 
-    {!! Form::submit('Zmień', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Zmień', ['class' => 'btn btn-primary']) !!}
 
-    {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
+
+        <div class="col-md-1">
+            <div class="pull-right"><a href="{{ route('town.index') }}" class="btn btn-success">Wróć</a></div>
+        </div>
+    </div>
+
+
 
 @endsection

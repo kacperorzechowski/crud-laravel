@@ -21,7 +21,7 @@
                     <td class="col-md-1">{{ $i }}</td>
                     <td class="col-md-2">{{ $person->name }}</td>
                     <td class="col-md-2">{{ $person->surname}}</td>
-                    <td class="col-md-2">{{ $person->town_id}}</td>
+                    <td class="col-md-2">{{ DB::table('towns')->where('id', $person->town_id)->value('cityname')}}</td>
                     <td class="col-md-1"><a href="{{ route('person.show', $person->id) }}" class="btn btn-info">Zobacz</a></td>
                     <td class="col-md-1"><a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary">Zmień</a></td>
                     <td class="col-md-1">

@@ -20,11 +20,19 @@
 
     <div class="form-group">
         {!! Form::label('town_id', 'Miasto:', ['class' => 'control-label']) !!}
-        {!! Form::text('town_id', null, ['class' => 'form-control']) !!}
+        {!! Form::select('town_id', $towns, $person->townid, ['class' => 'form-control']) !!}
     </div>
+    <div class="row">
+        <div class="col-md-1">
+            {!! Form::submit('Zmień', ['class' => 'btn btn-primary']) !!}
 
-    {!! Form::submit('Zmień', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
 
-    {!! Form::close() !!}
+
+        <div class="col-md-1">
+            <div class="pull-right"><a href="{{ route('person.index') }}" class="btn btn-success">Wróć</a></div>
+        </div>
+    </div>
 
 @endsection

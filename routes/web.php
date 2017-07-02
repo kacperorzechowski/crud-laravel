@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('home', function () {
+    return view('welcome');
+});
+
 Route::resource('person', 'PersonController');
 Route::resource('town', 'TownController');

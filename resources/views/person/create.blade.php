@@ -26,7 +26,7 @@
 
     <div class="form-group">
         {!! Form::label('town_id', 'Miasto:', ['class' => 'control-label']) !!}
-        {!! Form::text('town_id', null, ['class' => 'form-control']) !!}
+        {!! Form::select('town_id', $towns, null, ['class' => 'form-control']) !!}
     </div>
 
     {!! Form::submit('Dodaj', ['class' => 'btn btn-primary']) !!}

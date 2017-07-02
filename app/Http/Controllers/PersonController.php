@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Person;
+use App\Town;
+
+
 
 class PersonController extends Controller
 {
@@ -21,7 +24,8 @@ class PersonController extends Controller
      */
     public function create()
     {
-        return view('person.create');
+        $towns = Town::pluck('cityname', 'id');
+        return view('person.create')->with('towns',$towns);
     }
 
     /**
@@ -67,8 +71,9 @@ class PersonController extends Controller
     public function edit($id)
     {
         $person = Person::findOrFail($id);
+        $towns = Town::pluck('cityname', 'id');
 
-        return view('person.edit')->with('person',$person);
+        return view('person.edit')->with('person',$person)->with('towns', $towns);
     }
 
     /**
