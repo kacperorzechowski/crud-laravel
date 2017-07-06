@@ -6,6 +6,7 @@ use App\Http\Requests\StorePerson;
 use Illuminate\Http\Request;
 use App\Person;
 use App\Town;
+use DB;
 
 
 
@@ -13,7 +14,7 @@ class PersonController extends Controller
 {
     public function index()
     {
-        $people = Person::all();
+        $people = DB::table('people')->paginate(15);
 
         return view('person.index')->with('people', $people);
     }
@@ -37,7 +38,7 @@ class PersonController extends Controller
     public function store(StorePerson $request)
     {
 
-        $this->validate($request);
+        //$this->validate($request);
 
         $input = $request->all();
 
@@ -83,7 +84,7 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
 
-        $this->validate($request);
+        //$this->validate($request);
 
         $input = $request->all();
 

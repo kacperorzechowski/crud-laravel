@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <p><strong>Popraw następujące błędy:</strong></p><hr>
+            @foreach($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
     {!! Form::model($town, [
     'method' => 'PATCH',
     'route' => ['town.update', $town->id]

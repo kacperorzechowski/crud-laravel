@@ -14,10 +14,9 @@
         </tr>
         </thead>
         <tbody>
-        <?php $i = 1; ?>
         @foreach($towns as $town)
             <tr>
-                <td class="col-md-1">{{ $i }}</td>
+                <td class="col-md-1">{{ (($towns->currentPage() - 1 ) * $towns->perPage() ) + $loop->iteration }}</td>
                 <td class="col-md-2">{{ $town->cityname }}</td>
                 <td class="col-md-2">{{ $town->postal}}</td>
                 <td class="col-md-1"><a href="{{ route('town.show', $town->id) }}" class="btn btn-info">Zobacz</a></td>
@@ -32,9 +31,9 @@
                     {!! Form::close() !!}
                 </td>
             </tr>
-            <?php $i++; ?>
         @endforeach
         </tbody>
     </table>
+    <div class="text-center">{{ $towns->links() }}</div>
 
 @endsection

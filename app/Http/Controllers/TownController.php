@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTown;
 use Illuminate\Http\Request;
 use App\Town;
+use DB;
 
 class TownController extends Controller
 {
     public function index()
     {
-        $towns = Town::all();
+        $towns = DB::table('towns')->paginate(15);
 
         return view('town.index')->with('towns', $towns);
     }
@@ -33,7 +34,7 @@ class TownController extends Controller
     public function store(StoreTown $request)
     {
 
-        $this->validate($request);
+       // $this->validate($request);
 
         $input = $request->all();
 
@@ -78,7 +79,7 @@ class TownController extends Controller
     {
         $town = Town::findOrFail($id);
 
-        $this->validate($request);
+        //$this->validate($request);
 
         $input = $request->all();
 

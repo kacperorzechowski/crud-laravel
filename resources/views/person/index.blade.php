@@ -15,10 +15,9 @@
             </tr>
             </thead>
             <tbody>
-                <?php $i = 1; ?>
                 @foreach($people as $person)
                 <tr>
-                    <td class="col-md-1">{{ $i }}</td>
+                    <td class="col-md-1">{{ (($people->currentPage() - 1 ) * $people->perPage() ) + $loop->iteration }}</td>
                     <td class="col-md-2">{{ $person->name }}</td>
                     <td class="col-md-2">{{ $person->surname}}</td>
                     <td class="col-md-2">{{ DB::table('towns')->where('id', $person->town_id)->value('cityname')}}</td>
@@ -34,9 +33,9 @@
                                 {!! Form::close() !!}
                     </td>
                 </tr>
-                <?php $i++; ?>
                 @endforeach
             </tbody>
         </table>
+    <div class="text-center">{{ $people->links() }}</div>
 
 @endsection
