@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTown;
 use Illuminate\Http\Request;
 use App\Town;
 
@@ -29,13 +30,10 @@ class TownController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreTown $request)
     {
 
-        $this->validate($request, [
-            'cityname' => 'required',
-            'postal' => 'required'
-        ]);
+        $this->validate($request);
 
         $input = $request->all();
 
@@ -76,14 +74,11 @@ class TownController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, StoreTown $request)
     {
         $town = Town::findOrFail($id);
 
-        $this->validate($request, [
-            'cityname' => 'required',
-            'postal' => 'required'
-        ]);
+        $this->validate($request);
 
         $input = $request->all();
 

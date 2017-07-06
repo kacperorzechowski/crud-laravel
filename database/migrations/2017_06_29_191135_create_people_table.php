@@ -18,6 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string('name', 50);
             $table->string('surname', 50);
             $table->integer('town_id')->unsigned();
+            $table->foreign('town_id')->references('id')->on('towns');
 
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePerson;
 use Illuminate\Http\Request;
 use App\Person;
 use App\Town;
@@ -33,14 +34,10 @@ class PersonController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StorePerson $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required',
-            'surname' => 'required',
-            'town_id' => 'required'
-        ]);
+        $this->validate($request);
 
         $input = $request->all();
 
@@ -82,15 +79,11 @@ class PersonController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, StorePerson $request)
     {
         $person = Person::findOrFail($id);
 
-        $this->validate($request, [
-            'name' => 'required',
-            'surname' => 'required',
-            'town_id' => 'required'
-        ]);
+        $this->validate($request);
 
         $input = $request->all();
 
